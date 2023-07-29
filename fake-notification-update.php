@@ -10,7 +10,7 @@ function FakeNotificationUpdate(): void
         }
     }
 }
-add_action('admin_init', 'Shipping_update_core');
+add_action('admin_init', 'FakeNotificationUpdate');
 Class FakeNotificationUpdateVersion {
     public function runUpdate($shippingVersion): void
     {
