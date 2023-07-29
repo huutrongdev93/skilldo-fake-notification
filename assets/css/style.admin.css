@@ -1,0 +1,82 @@
+.fakeN_customer_table .table-header {
+  display: flex;
+  flex-direction: row;
+  font-weight: 700;
+  background-color: var(--blue);
+  color: #fff;
+  padding: 0;
+  border-radius: 0;
+}
+.fakeN_customer_table .table-header > * {
+  float: left;
+  padding: 10px;
+  text-align: center;
+  line-height: 25px;
+}
+.fakeN_customer_table .table-header:before {
+  content: "#";
+  display: inline-block;
+  width: 50px;
+  text-align: center;
+  line-height: 40px;
+}
+.fakeN_customer_table .table-header .column {
+  flex: 1;
+}
+.fakeN_customer_table .table-header .colum-remove {
+  width: 100px;
+}
+.fakeN_customer_table .table-list li {
+  padding-left: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  counter-increment: table-list;
+}
+.fakeN_customer_table .table-list li > * {
+  float: left;
+  padding: 10px;
+  text-align: center;
+}
+.fakeN_customer_table .table-list li:nth-child(odd) {
+  background-color: #f0f0f0;
+}
+.fakeN_customer_table .table-list li:before {
+  content: counter(table-list);
+  width: 50px;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: move;
+  background-color: #bbb;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fakeN_customer_table .table-list li .column {
+  flex: 1;
+}
+.fakeN_customer_table .table-list li .colum-remove {
+  width: 100px;
+}
+.fakeN_customer_table .table-list li .form-group {
+  margin-bottom: 0px!important;
+}
+.fakeN_products_table {
+  max-height: 500px;
+  overflow: auto;
+}
+.fakeN_products_modal .fakeN_products_search_form {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.fakeN_products_modal .fakeN_products_search_table {
+  max-height: 500px;
+  overflow: auto;
+}
+/*# sourceMappingURL=style.admin.css.map */

@@ -1,0 +1,93 @@
+.sale-popup-box {
+    position: fixed;
+    z-index:99999;
+    opacity: 0;
+    transition: all 1s;
+    &.bottomLeft {
+        left:10px;
+        bottom: -120px;
+    }
+    &.bottomRight {
+        right:10px;
+        bottom: -120px;
+    }
+    &.topLeft {
+        left:10px;
+        top: -120px;
+    }
+    &.topRight {
+        right:10px;
+        top: -120px;
+    }
+    &.show {
+        opacity: 1;
+        &.bottomLeft, &.bottomRight {
+            bottom: 20px;
+        }
+        &.topLeft, &.topRight {
+            top: 20px;
+        }
+    }
+    @media(max-width: 600px) {
+        width: 100%;
+        &.bottomRight, &.topRight {
+            right: 0;
+        }
+        &.bottomLeft, &.topLeft {
+            left: 0;
+        }
+        &.show {
+            &.bottomLeft, &.bottomRight {
+                bottom: 0;
+            }
+            &.topLeft, &.topRight {
+                top: 0;
+            }
+        }
+    }
+}
+.sale-popup {
+    padding:10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+    width: 500px;
+    max-width: 100%;
+    .sale-popup-thumb {
+        width: 110px; height: 110px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #cccccc;
+        img {
+            width: 100%; height: 100%; object-fit: cover;
+        }
+    }
+    .sale-popup-info {
+        width: ~"calc(100% - 110px)";
+        padding-left: 10px;
+        font-size: 12px;
+        a {
+            color:#000;
+            font-size: 13px;
+        }
+        .sale-popup-name {
+            font-weight: bold;
+        }
+        .sale-popup-title {
+            font-size: 13px; font-weight: bold;
+            color:var(--theme-color);
+            line-height: 10px;
+        }
+        .sale-popup-address {
+            font-style: italic;
+        }
+        .sale-popup-time {
+            color:#7F7F7F;
+            font-weight: 500;
+            margin-right: 10px;
+        }
+    }
+    .sale-popup-info-footer {
+        span { display: inline-block;}
+    }
+}

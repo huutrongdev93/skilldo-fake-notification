@@ -1,0 +1,85 @@
+.fakeN_customer_table {
+    .table-header {
+        display: flex;
+        flex-direction: row;
+        font-weight: 700;
+        background-color:var(--blue);
+        color: #fff;
+        padding:0;
+        border-radius: 0;
+        >* {
+            float: left;
+            padding: 10px;
+            text-align: center;
+            line-height: 25px;
+        }
+        &:before {
+            content: "#";
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+            line-height: 40px;
+        }
+        .column {
+            flex: 1;
+        }
+        .colum-remove {
+            width: 100px;
+        }
+    }
+    .table-list {
+        li {
+            padding-left: 50px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            position: relative;
+            counter-increment: table-list;
+            >* {
+                float: left;
+                padding: 10px;
+                text-align: center;
+            }
+            &:nth-child(odd) {
+                background-color: #f0f0f0;
+            }
+            &:before {
+                content: counter(table-list);
+                width: 50px;
+                position: absolute;
+                height: 100%;
+                top: 0;
+                left: 0;
+                cursor: move;
+                background-color: #bbb;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .column {
+                flex: 1;
+            }
+            .colum-remove {
+                width: 100px;
+            }
+            .form-group {
+                margin-bottom: 0px!important;
+            }
+        }
+    }
+}
+.fakeN_products_table {
+    max-height: 500px;
+    overflow: auto;
+}
+.fakeN_products_modal {
+    .fakeN_products_search_form {
+        display: flex; gap:10px; justify-content: flex-end;
+        margin-bottom: 10px;
+    }
+    .fakeN_products_search_table {
+        max-height: 500px;
+        overflow: auto;
+    }
+}
