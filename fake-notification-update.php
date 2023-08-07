@@ -27,6 +27,7 @@ Class FakeNotificationUpdateVersion {
     public function updateVersion_2_0_0($model): void
     {
         FakeNotificationUpdateDatabase::Version_2_0_0($model);
+        FakeNotificationUpdateFiles::Version_2_0_0($model);
     }
 }
 Class FakeNotificationUpdateDatabase {
@@ -44,5 +45,24 @@ Class FakeNotificationUpdateDatabase {
         if(isset($config['fake_customer'])) unset($config['fake_customer']);
         if(isset($config['fake_product'])) unset($config['fake_product']);
         Option::update('fake_notification_config', $config);
+    }
+}
+
+Class FakeNotificationUpdateFiles {
+    static function Version_2_0_0($model): void {
+        $path = FCPATH.FAKE_NOTIFICATION_PATH.'/';
+        $Files = [
+            //options
+            'modules/html-main.php',
+        ];
+        foreach ($Files as $file) {
+            if(file_exists($path.$file)) unlink($path.$file);
+        }
+        $Folders = [
+            'modules',
+        ];
+        foreach ($Folders as $folder) {
+            if(is_dir($path.$folder)) rmdir($path.$folder);
+        }
     }
 }
