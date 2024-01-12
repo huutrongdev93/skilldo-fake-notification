@@ -3,12 +3,12 @@
 Plugin name     : Marketing - Fake Notification
 Plugin class    : Fake_Notification
 Plugin uri      : https://sikido.vn
-Description     :
+Description     : Tạo thông báo ảo kích thích nhu cầu mua sắm của khách hàng
 Author          : SKDSoftware Dev Team
-Version         : 2.0.0
+Version         : 2.0.2
  */
 const FAKE_NOTIFICATION_NAME = 'fake-notification';
-const FAKE_NOTIFICATION_VERSION = '2.0.0';
+const FAKE_NOTIFICATION_VERSION = '2.0.1';
 
 define('FAKE_NOTIFICATION_PATH', Path::plugin(FAKE_NOTIFICATION_NAME));
 
@@ -62,10 +62,10 @@ class Fake_Notification {
         $config = array_merge($default, $config);
 
         if(!empty($key)) {
-            if(isset($config[$key])) return $config[$key];
-            if(isset($default[$key])) return $default[$key];
+            if(isset($config[$key])) {
+                return $config[$key];
+            }
             if(Arr::get($config, $key) !== null) return Arr::get($config, $key);
-            if(Arr::get($default, $key) !== null) return Arr::get($default, $key);
         }
 
         return $config;
@@ -75,9 +75,11 @@ class Fake_Notification {
     {
         $config = static::config();
         if(Device::isGoogleSpeed()) return null;
-        if(Device::isMobile() && !in_array('mobile', $config['show'])) return null;
-        if(!Device::isMobile() && !in_array('desktop', $config['show'])) return null;
-        Plugin::partial(FAKE_NOTIFICATION_NAME, 'popup', ['config' => $config]);
+        if(have_posts($config['show'])) {
+            if(Device::isMobile() && !in_array('mobile', $config['show'])) return null;
+            if(!Device::isMobile() && !in_array('desktop', $config['show'])) return null;
+            Plugin::partial(FAKE_NOTIFICATION_NAME, 'popup', ['config' => $config]);
+        }
     }
 }
 
