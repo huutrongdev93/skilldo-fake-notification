@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mb-2">
     <div class="col-md-3">
         <div class="ui-title-bar__group" style="padding-bottom:5px;">
             <h3 class="ui-title-bar__title" style="font-size:20px;">Dữ liệu mẫu</h3>
@@ -9,20 +9,20 @@
         <div class="box">
             <div class="box-content" style="padding:10px;">
 	            <p class="heading">Loại dữ liệu mẫu</p>
-	            <div class="form-group" style="display: <?php echo (!$productPlugin) ? 'none' : 'block';?>;">
+	            <div class="form-group" style="display: {!! (!$productPlugin) ? 'none' : 'block' !!};">
 		            <label class="radio d-block">
-			            <input type="radio" name="fakeDataType" value="products" class="js_fakeN_input_type" <?php echo ($dataType == 'products' && $productPlugin) ? 'checked' : '';?>> Sản phẩm
+			            <input type="radio" name="fakeDataType" value="products" class="js_fakeN_input_type" {{($dataType == 'products' && $productPlugin) ? 'checked' : ''}}> Sản phẩm
 		            </label>
 		            <label class="radio d-block">
-			            <input type="radio" name="fakeDataType" value="handmade" class="js_fakeN_input_type" <?php echo ($dataType == 'handmade' || !$productPlugin) ? 'checked' : '';?>> Tự tạo
+			            <input type="radio" name="fakeDataType" value="handmade" class="js_fakeN_input_type" {{($dataType == 'handmade' || !$productPlugin) ? 'checked' : ''}}> Tự tạo
 		            </label>
 	            </div>
-	            <div class="fakeN_data_box fakeN_data_handmade" id="js_fakeN_handmade_box" data-handmade="<?php echo htmlentities(json_encode(Fake_Notification::config('dataHandmade')));?>" style="display: <?php echo ($dataType == 'products' && $productPlugin) ? 'none' : 'block';?>;">
+	            <div class="fakeN_data_box fakeN_data_handmade" id="js_fakeN_handmade_box" data-handmade="{!! htmlentities(json_encode(Fake_Notification::config('dataHandmade'))) !!}" style="display: {{($dataType == 'products' && $productPlugin) ? 'none' : 'block'}};">
 		            <div class="d-flex justify-content-between align-items-center mb-1">
 			            <p class="heading mb-0">Dữ liệu mẫu được áp dụng</p>
 			            <div>
 				            <button class="btn btn-blue" type="button" id="js_fakeN_handmade_btn_add">
-                                <?php echo Admin::icon('add');?> Thêm sản phẩm
+                                {!! Admin::icon('add') !!} Thêm sản phẩm
 				            </button>
 			            </div>
 		            </div>
@@ -40,15 +40,15 @@
 			            </table>
 		            </div>
 	            </div>
-	            <div class="fakeN_data_box fakeN_data_products" style="display: <?php echo ($dataType == 'handmade' || !$productPlugin) ? 'none' : 'block';?>;">
+	            <div class="fakeN_data_box fakeN_data_products" style="display: {!! ($dataType == 'handmade' || !$productPlugin) ? 'none' : 'block' !!};">
 		            <div class="d-flex justify-content-between align-items-center mb-1">
 			            <p class="heading mb-0">Sản phẩm được áp dụng</p>
 			            <div>
 				            <button class="btn btn-blue btn-blue-bg" type="button" id="js_fakeN_products_btn_random">
-                                <?php echo Admin::icon('add');?> Thêm 20 sản phẩm ngẫu nhiên
+                                {!! Admin::icon('add') !!} Thêm 20 sản phẩm ngẫu nhiên
 				            </button>
 				            <button class="btn btn-blue" type="button" id="js_fakeN_products_btn_add">
-                                <?php echo Admin::icon('add');?> Thêm sản phẩm
+                                {!! Admin::icon('add') !!} Thêm sản phẩm
 				            </button>
 			            </div>
 		            </div>
@@ -90,9 +90,9 @@
 					<div class="fakeN_products_search_form">
 						<div class="column">
 							<select name="searchCategory" class="form-control">
-                                <?php foreach ($productsCategories as $categoryKey => $categoryName) { ?>
-									<option value="<?php echo $categoryKey;?>"><?php echo $categoryName;?></option>
-                                <?php } ?>
+                                @foreach ($productsCategories as $categoryKey => $categoryName)
+									<option value="{{$categoryKey}}">{{$categoryName}}</option>
+								@endforeach
 							</select>
 						</div>
 						<div class="column">
@@ -136,7 +136,7 @@
 	        </span>
 		</td>
 		<td class="action column-action">
-			<button class="btn btn-red js_fakeN_product_btn_delete" data-id="${id}"><?php echo Admin::icon('delete');?></button>
+			<button class="btn btn-red js_fakeN_product_btn_delete" data-id="${id}">{!! Admin::icon('delete') !!}</button>
 		</td>
 	</tr>
 </script>
@@ -144,8 +144,8 @@
 	<tr class="js_column js_fakeN_handmade_item tr_${id}">
 		<td class="column">
 			<div class="input-group image-group">
-				<input type="images" name="handmade[${id}][image]" value="${image}" id="image_${id}" class="form-control" field="handmade[${id}][image]">
-				<span class="input-group-addon input-file-addon iframe-btn" data-fancybox data-type="iframe" data-src="scripts/rpsfmng/filemanager/dialog.php?type=1&amp;subfolder=&amp;editor=mce_0&amp;field_id=image_${id}&amp;callback=FakeNFileManagerCallback" data-id="image_${id}">
+				<input type="text" name="handmade[${id}][image]" value="${image}" id="image_${id}" class="form-control" field="handmade[${id}][image]">
+				<span class="input-group-addon input-file-addon iframe-btn" data-fancybox data-type="iframe" data-src="{!! Url::fileManager('type=1&field_id=image_${id}&callback=FakeNFileManagerCallback') !!}" data-id="image_${id}">
 					<i class="fal fa-image"></i> Chọn Ảnh
 				</span>
 			</div>
@@ -157,7 +157,7 @@
 			<input name="handmade[${id}][url]" value="${url}" class="form-control" />
 		</td>
 		<td class="action column">
-			<button class="btn btn-red js_fakeN_handmade_btn_delete" data-id="${id}"><?php echo Admin::icon('delete');?></button>
+			<button class="btn btn-red js_fakeN_handmade_btn_delete" data-id="${id}">{!! Admin::icon('delete') !!}</button>
 		</td>
 	</tr>
 </script>
@@ -165,7 +165,7 @@
 <script>
 	function FakeNFileManagerCallback(fieldId) {
 		const input = $('#' + fieldId)
-		image_review(input);
+		FormHelper.mediaReview(input);
 		input.trigger('change');
 	}
 </script>

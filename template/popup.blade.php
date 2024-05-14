@@ -1,5 +1,5 @@
-<div id="jsNotificationKey" data-key="<?php echo $config['key'];?>"></div>
-<div class="sale-popup-box <?php echo $config['position'];?>" id="jsNotificationSale">
+<div id="jsNotificationKey" data-key="{!! $config['key'] !!}"></div>
+<div class="sale-popup-box {{$config['position']}}" id="jsNotificationSale">
     <div class="sale-popup d-flex">
         <div class="sale-popup-thumb">
             <a href="" class="sale-popup-url js_data_url">
@@ -52,10 +52,10 @@
 				let data = {
 					action: 'FakeNotificationAjax::load'
 				}
-				$.post(ajax, data, function () {}, 'json').done(function (response) {
+				request.post(ajax, data).then(function (response) {
 					if (response.status === 'success') {
-						self.notification = response.notification;
-						localStorage.setItem('_fakeNotificationData', JSON.stringify(response.notification));
+						self.notification = response.data;
+						localStorage.setItem('_fakeNotificationData', JSON.stringify(response.data));
 						self.loopNotification()
 					}
 				});

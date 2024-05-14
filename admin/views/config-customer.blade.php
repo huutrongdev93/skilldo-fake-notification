@@ -1,4 +1,4 @@
-<div class="row" id="js_fakeN_customer_box" data-customer="<?php echo htmlentities(json_encode(Fake_Notification::config('customers')));?>">
+<div class="row mb-2" id="js_fakeN_customer_box" data-customer="{!! htmlentities(json_encode(Fake_Notification::config('customers'))) !!}">
     <div class="col-md-3">
         <div class="ui-title-bar__group" style="padding-bottom:5px;">
             <h3 class="ui-title-bar__title" style="font-size:20px;">Dữ liệu khách hàng ảo</h3>
@@ -12,7 +12,7 @@
 		            <p class="heading mb-0">Dữ liệu khách hàng ảo</p>
 		            <div>
 			            <button class="btn btn-blue btn-blue-bg" type="button" id="js_fakeN_customer_btn_random">
-                            <?php echo Admin::icon('add');?> Thêm 20 khách hàng ngẫu nhiên
+                            {!! Admin::icon('add') !!} Thêm 20 khách hàng ngẫu nhiên
 			            </button>
 			            <button type="button" class="btn btn-blue" id="js_fakeN_customer_btn_add"><i class="fad fa-plus-circle"></i> Thêm khách hàng ảo</button>
 		            </div>
@@ -44,7 +44,7 @@
             <input name="customer[${id}][content]" type="text" class="form-control" value="${content}" placeholder="Vd: đã mua sản phẩm">
         </div>
         <div class="colum-remove">
-            <button type="button" class="btn btn-red js_fakeN_customer_btn_delete" data-id="${id}"><?php echo Admin::icon('delete');?></button>
+            <button type="button" class="btn btn-red js_fakeN_customer_btn_delete" data-id="${id}">{!! Admin::icon('delete') !!}</button>
         </div>
     </li>
 </script>

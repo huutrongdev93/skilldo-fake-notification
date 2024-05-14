@@ -148,16 +148,16 @@ class FakeNotificationHandle {
 			action : 'FakeNotificationAdminAjax::customerRandom',
 		}
 
-		$.post(ajax, data, function() {}, 'json').done(function(response) {
+		request.post(ajax, data).then(function (response) {
 			if( response.status === 'success') {
-				for (const [key, item] of Object.entries(response.customers)) {
+				for (const [key, item] of Object.entries(response.data)) {
 					item.id = uniqid();
 					self.customerList.add(item);
 				}
 				self.renderCustomer();
 			}
 			else {
-				show_message(response.message, response.status);
+				SkilldoMessage.response(response);
 			}
 		});
 
@@ -232,10 +232,11 @@ class FakeNotificationHandle {
 			'action' : 'FakeNotificationAdminAjax::productLoad',
 		}
 		let self = this;
-		$.post(ajax, data, function (data) { }, 'json').done(function (response) {
-			if (response.status === 'error') show_message(response.message, response.status);
+		
+		request.post(ajax, data).then(function (response) {
+			if (response.status === 'error') SkilldoMessage.response(response);
 			if (response.status === 'success') {
-				self.productList.products = response.products;
+				self.productList.products = response.data;
 				self.productRender();
 			}
 		});
@@ -248,8 +249,8 @@ class FakeNotificationHandle {
 			keyword     : $('input[name="searchName"]').val(),
 		}
 
-		$.post(ajax, data, function() {}, 'json').done(function( response ) {
-			show_message(response.message, response.status);
+		request.post(ajax, data).then(function (response) {
+			SkilldoMessage.response(response);
 			if( response.status === 'success') {
 
 				let listProduct = decodeURIComponent(atob(response.data).split('').map(function (c) {
@@ -277,15 +278,15 @@ class FakeNotificationHandle {
 			data.products.unshift(item.id)
 		}
 
-		$.post(ajax, data, function() {}, 'json').done(function(response) {
+		request.post(ajax, data).then(function (response) {
 			if( response.status === 'success') {
-				for (const [key, item] of Object.entries(response.products)) {
+				for (const [key, item] of Object.entries(response.data)) {
 					self.productList.add(item);
 				}
 				self.productRender();
 			}
 			else {
-				show_message(response.message, response.status);
+				SkilldoMessage.response(response);
 			}
 		});
 
@@ -393,9 +394,9 @@ class FakeNotificationHandle {
 			data.products.unshift(item.id)
 		}
 
-		$.post(ajax, data, function() {}, 'json').done(function(response) {
+		request.post(ajax, data).then(function (response) {
 			$('.loading').hide();
-			show_message(response.message, response.status);
+			SkilldoMessage.response(response);
 		});
 
 		return false;

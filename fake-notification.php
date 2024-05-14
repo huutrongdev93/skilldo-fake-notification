@@ -5,10 +5,11 @@ Plugin class    : Fake_Notification
 Plugin uri      : https://sikido.vn
 Description     : Tạo thông báo ảo kích thích nhu cầu mua sắm của khách hàng
 Author          : SKDSoftware Dev Team
-Version         : 2.0.2
+Version         : 2.1.0
  */
 const FAKE_NOTIFICATION_NAME = 'fake-notification';
-const FAKE_NOTIFICATION_VERSION = '2.0.1';
+
+const FAKE_NOTIFICATION_VERSION = '2.1.0';
 
 define('FAKE_NOTIFICATION_PATH', Path::plugin(FAKE_NOTIFICATION_NAME));
 
@@ -78,7 +79,7 @@ class Fake_Notification {
         if(have_posts($config['show'])) {
             if(Device::isMobile() && !in_array('mobile', $config['show'])) return null;
             if(!Device::isMobile() && !in_array('desktop', $config['show'])) return null;
-            Plugin::partial(FAKE_NOTIFICATION_NAME, 'popup', ['config' => $config]);
+            Plugin::view(FAKE_NOTIFICATION_NAME, 'popup', ['config' => $config]);
         }
     }
 }
