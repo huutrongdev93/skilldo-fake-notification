@@ -29,11 +29,11 @@ class FakeNotificationAdminAjax {
 
             $districts = [];
 
-            $districtsTemp = Cart_Location::districts();
+            $districtsTemp = Skilldo\Location::districts();
 
             foreach ($districtsTemp as $districtList) {
-                foreach ($districtList as $item) {
-                    $districts[] = $item;
+                foreach ($districtList->districts as $item) {
+                    $districts[] = $item->fullname;
                 }
             }
 

@@ -1,7 +1,7 @@
 <?php
 const FAKE_NOTIFICATION_NAME = 'fake-notification';
 
-const FAKE_NOTIFICATION_VERSION = '2.1.0';
+const FAKE_NOTIFICATION_VERSION = '2.1.1';
 
 define('FAKE_NOTIFICATION_PATH', Path::plugin(FAKE_NOTIFICATION_NAME));
 
